@@ -4,11 +4,13 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
+  ImageBackground,
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import { Card, Text, Avatar } from 'react-native-elements';
+import Touchable from 'react-native-platform-touchable';
 
 import { MonoText } from '../components/StyledText';
 
@@ -19,82 +21,52 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
-
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
-          </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
+      <ImageBackground source={{uri: 'https://media.wkyc.com/assets/WKYC/images/511414673/511414673_750x422.jpg'}} style={{width: '100%', height: '100%'}}>
+        <View style={{marginTop: 250}}>
+          <Text h2 style={{color: 'dodgerblue', textAlign: 'center', textShadowColor: 'rgba(0,0,0,0.75)', textShadowOffset: {width: 3, height: 3}, textShadowRadius: 10}}>EDSIGCON</Text>
+          <Text h2 style={{color: 'dodgerblue', textAlign: 'center', textShadowColor: 'rgba(0,0,0,0.75)', textShadowOffset: {width: 4, height: 4}, textShadowRadius: 10}}>CONISAR 2019</Text>
+          <Text h5 style={{color: 'white', textAlign: 'center', textShadowColor: 'rgba(0,0,0,1)', textShadowOffset: {width: 3, height: 3}, textShadowRadius: 10}}>Wednesday, Nov. 6 - Saturday, Nov. 9</Text>
         </View>
-      </View>
+        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'stretch', marginTop: 10}}>
+          <Touchable onPress={this._handleTwitter}>
+            <Image
+                  source={{uri: 'https://pbs.twimg.com/profile_images/1111729635610382336/_65QFl7B_400x400.png'}}
+                  resizeMode="contain"
+                  fadeDuration={0}
+                  style={{ width: 35, height: 35, borderRadius: 100, marginRight: 5 }}
+                />
+          </Touchable>
+          <Touchable onPress={this._handleFacebook}>
+            <Image
+                    source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Facebook_logo_%28square%29.png/600px-Facebook_logo_%28square%29.png'}}
+                    resizeMode="contain"
+                    fadeDuration={0}
+                    style={{ width: 35, height: 35, borderRadius: 100, marginRight: 5 }}
+                  />
+          </Touchable>
+          <Touchable onPress={this._handleLinkedIn}>
+            <Image
+                    source={{uri: 'https://www.qtoptometry.com/wp-content/uploads/2018/11/LinkedIn-Logo.jpg'}}
+                    resizeMode="contain"
+                    fadeDuration={0}
+                    style={{ width: 35, height: 35, borderRadius: 100 }}
+                  />
+          </Touchable>
+        </View>
+      </ImageBackground>
     );
   }
 
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
+  _handleTwitter = () => {
+    WebBrowser.openBrowserAsync('https://twitter.com/edsigcon');
   };
 
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
+  _handleFacebook = () => {
+    WebBrowser.openBrowserAsync('https://www.facebook.com/groups/edsig/');
+  };
+
+  _handleLinkedIn = () => {
+    WebBrowser.openBrowserAsync('https://www.linkedin.com/groups/8655139');
   };
 }
 

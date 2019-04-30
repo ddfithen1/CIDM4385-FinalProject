@@ -6,8 +6,8 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import MapScreen from '../screens/MapScreen';
 import TeamScreen from '../screens/TeamScreen';
+import TopicsScreen from '../screens/TopicsScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -55,20 +55,6 @@ SettingsStack.navigationOptions = {
   ),
 };
 
-const MapStack = createStackNavigator({
-  Map: MapScreen,
-});
-
-MapStack.navigationOptions = {
-  tabBarLabel: 'Map',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
-  ),
-};
-
 const TeamStack = createStackNavigator({
   Team: TeamScreen,
 });
@@ -78,15 +64,37 @@ TeamStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
+const TopicsStack = createStackNavigator({
+  Topics: TopicsScreen,
+});
+
+TopicsStack.navigationOptions = {
+  tabBarLabel: 'Topics',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
     />
   ),
 };
 
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack,
-  MapStack,
+  TopicsStack,
   TeamStack,
+  //LinksStack,
+  //SettingsStack,
 });

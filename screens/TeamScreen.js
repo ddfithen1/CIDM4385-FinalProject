@@ -44,9 +44,9 @@ export default class TeamScreen extends React.Component {
   
     render() {
       return(
-        <View>
+        <ScrollView>
           {cards}
-        </View>
+        </ScrollView>
       )
     }
   }
