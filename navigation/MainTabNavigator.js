@@ -8,6 +8,7 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import TeamScreen from '../screens/TeamScreen';
 import TopicsScreen from '../screens/TopicsScreen';
+import ScheduleScreen from '../screens/ScheduleScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -91,8 +92,27 @@ TopicsStack.navigationOptions = {
   ),
 };
 
+const ScheduleStack = createStackNavigator({
+  Schedule: ScheduleScreen,
+});
+
+ScheduleStack.navigationOptions = {
+  tabBarLabel: 'Schedule',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+        ? `ios-information-circle${focused ? '' : '-outline'}`
+        : 'md-information-circle'
+      }
+    />
+  ),
+};
+
 export default createBottomTabNavigator({
   HomeStack,
+  ScheduleStack,
   TopicsStack,
   TeamStack,
   //LinksStack,
