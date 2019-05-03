@@ -25,6 +25,8 @@ firebase.initializeApp(firebaseConfig);
 
 var cards = [];
 
+
+// Code based on this: https://stackoverflow.com/questions/52100103/getting-all-documents-from-one-collection-in-firestore
 getMembers();
 async function getMembers() {
   const mainData = await firebase.firestore().collection("members").get();
